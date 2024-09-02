@@ -37,8 +37,6 @@ class AuthenticatedSessionController extends Controller
 
         $link = URL::temporarySignedRoute('login.token',now()->addHour(),['user' => $user->id]);
 
-        // defer(fn() => Mail::to($user->email)->send(new TestMail($link)));
-
         Mail::to($user->email)->send(new TestMail($link));
         return back()->with(['status' => 'pls check your email to login']);
     }
