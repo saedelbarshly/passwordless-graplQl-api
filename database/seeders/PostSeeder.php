@@ -14,8 +14,8 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'totle' => Str::random(50),
+        DB::table('posts')->insert([
+            'title' => Str::random(50),
             'body' => Str::random(255),
         ]);
     }
