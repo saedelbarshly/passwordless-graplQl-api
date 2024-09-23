@@ -1,71 +1,7 @@
-"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
-scalar DateTime
-    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-scalar Upload
-  @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Upload")    
 
-"Indicates what fields are available at the top level of a query operation."
-type Query {
-    "Find a single user by an identifying attribute."
-    user(
-        "Search by primary key."
-        id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
 
-        "Search by email address."
-        email: String
-            @eq
-            @rules(apply: ["prohibits:id", "required_without:id", "email"])
-    ): User @find
 
-    "List multiple users."
-    users(
-        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
-        name: String @where(operator: "like")
-    ): [User!]! @paginate(defaultCount: 10)
-
-    posts: [Post]! @all
-}
-
-type Mutation {
-    createPost(
-        title: String!
-        body: String!
-            @rules(
-                apply: ["required"]
-                messages: [
-                    { rule: "required", message: "Body must not be empty" }
-                ]
-            )
-    ): Post! @create
-
-    updateImagePost(image: Upload!,id: ID!): Post!
-}
-
-"Account of a person who utilizes this application."
-type User {
-    "Unique primary key."
-    id: ID!
-
-    "Non-unique name."
-    name: String!
-
-    "Unique email address."
-    email: String!
-
-    "When the email was verified."
-    email_verified_at: DateTime
-
-    "When the account was created."
-    created_at: DateTime!
-
-    "When the account was last updated."
-    updated_at: DateTime!
-}
-
-type Post {
-    id: ID!
-    title: String!
-    body: String!
-    image: String
-}
+#import comment.graphql
+#import post.graphql
+#import user.graphql

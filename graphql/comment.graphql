@@ -1,0 +1,9 @@
+extend type Query{
+    commments: [Comment] @all
+}
+
+type Comment {
+    id: ID!
+    content: String!
+    post_id: ID!
+}

@@ -1,0 +1,28 @@
+extend type Query {
+    posts: [Post]! @all
+}
+
+# type Mutation {
+#     createPost(
+#         title: String!
+#         body: String!
+#             @rules(
+#                 apply: ["required"]
+#                 messages: [
+#                     { rule: "required", message: "Body must not be empty" }
+#                 ]
+#             )
+#     ): Post! @create
+
+#     updateImagePost(image: Upload!,id: ID!): Post!
+# }
+
+type Post {
+    id: ID!
+    title: String!
+    body: String!
+    # cover_image: String
+    # pinned: Boolean
+    # user_id: ID
+}
+

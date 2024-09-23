@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('body');
             $table->string('cover_image')->nullable();
             $table->boolean('pinned')->default(0);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
