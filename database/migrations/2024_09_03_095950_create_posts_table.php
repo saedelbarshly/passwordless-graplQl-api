@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('body');
-            $table->string('image')->nullable();
+            $table->string('title', 255);
+            $table->text('body');
+            $table->string('cover_image')->nullable();
+            $table->boolean('pinned')->default(0);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
