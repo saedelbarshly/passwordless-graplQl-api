@@ -24,6 +24,9 @@ type Query {
         name: String @where(operator: "like")
     ): [User!]! @paginate(defaultCount: 10)
 
+
+    me: User! @auth
+
 }
 
 
@@ -34,6 +37,8 @@ type User {
 
     "Non-unique name."
     name: String!
+
+    phone: String!
 
     "Unique email address."
     email: String!
