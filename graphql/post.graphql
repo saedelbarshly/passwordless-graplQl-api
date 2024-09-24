@@ -2,20 +2,18 @@ extend type Query {
     posts: [Post]! @all
 }
 
-# type Mutation {
-#     createPost(
-#         title: String!
-#         body: String!
-#             @rules(
-#                 apply: ["required"]
-#                 messages: [
-#                     { rule: "required", message: "Body must not be empty" }
-#                 ]
-#             )
-#     ): Post! @create
-
-#     updateImagePost(image: Upload!,id: ID!): Post!
-# }
+extend type Mutation {
+    createPost(
+        title: String!
+        body: String!
+            @rules(
+                apply: ["required"]
+                messages: [
+                    { rule: "required", message: "Body must not be empty" }
+                ]
+            )
+    ): Post! @create
+}
 
 type Post {
     id: ID!
