@@ -12,6 +12,7 @@ extend type Mutation {
                     { rule: "required", message: "Body must not be empty" }
                 ]
             )
+        user_id: ID @inject(context: "user.id")
     ): Post! @create
 }
 
@@ -20,7 +21,8 @@ type Post {
     title: String!
     body: String!
     # cover_image: String
-    # pinned: Boolean
-    # user_id: ID
+    pinned: Boolean
+    user_id: ID
+    author: User @belongsTo
 }
 
